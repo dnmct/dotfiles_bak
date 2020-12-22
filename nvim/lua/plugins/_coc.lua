@@ -2,6 +2,16 @@ local U = require('utils')
 local fn = vim.fn
 local cmd = vim.cmd
 local api = vim.api
+local g = vim.g
+
+g.coc_global_extensions = {
+    'coc-json',
+    'coc-tsserver',
+    'coc-yaml',
+    'coc-eslint',
+    'coc-prettier',
+    'coc-lua',
+}
 
 function _G.check_back_space()
     local col = vim.fn.col('.') - 1
