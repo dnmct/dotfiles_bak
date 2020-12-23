@@ -28,6 +28,8 @@ vim.bo.autoindent = true
 vim.o.expandtab = true
 vim.bo.expandtab = true
 
+vim.g.netrw_dirhistmax = 0
+
 vim.cmd('colo gruvbox8')
 
 -- Map <leader> to space
