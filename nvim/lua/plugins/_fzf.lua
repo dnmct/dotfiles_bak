@@ -1,6 +1,8 @@
 local U = require 'utils'
 local vim = vim
 
+vim.g.fzf_layout = { down = '~40%' }
+
 U.map("n", "<leader>ff", ':Files<CR>')
 
 U.map("n", "<leader>fg", ':GFiles<CR>')
