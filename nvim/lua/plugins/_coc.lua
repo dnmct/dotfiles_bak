@@ -36,10 +36,16 @@ function show_docs()
     end
 end
 
-U.map('n', 'gh', '<CMD>lua show_docs()<CR>')
+U.map('n', 'K', '<CMD>lua show_docs()<CR>')
 
 -- Use <c-space> to trigger completion.
 U.map('i', '<C-SPACE>', 'coc#refresh()', { expr = true })
+
+-- GoTo code navigation.
+U.map('n', '<leader>gd', '<Plug>(coc-definition)', { noremap = false })
+U.map('n', '<leader>gy', '<Plug>(coc-type-definition)', { noremap = false })
+U.map('n', '<leader>gi', '<Plug>(coc-implementation)', { noremap = false })
+U.map('n', '<leader>gr', '<Plug>(coc-references)', { noremap = false })
 
 -- Make <CR> auto-select the first completion item and notify coc.nvim to
 -- format on enter, <cr> could be remapped by other vim plugin

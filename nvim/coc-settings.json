@@ -1,3 +1,5 @@
 {
-  "npm.binPath": "yarn"
+  "npm.binPath": "yarn",
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "typescript", "typescriptreact"],
+  "eslint.autoFixOnSave": true
 }
