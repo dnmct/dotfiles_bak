@@ -1,1 +1,7 @@
 # dotfiles
+
+## zsh
+
+## nvim
+
+## tmux
