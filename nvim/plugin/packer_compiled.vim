@@ -13,7 +13,13 @@ local plugins = {
     loaded = false,
     only_sequence = false,
     only_setup = false,
-    path = "/Users/danmcatee/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+    path = "/Users/dnmct/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+  },
+  ["vim-gitgutter"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/Users/dnmct/.local/share/nvim/site/pack/packer/opt/vim-gitgutter"
   }
 }
 
