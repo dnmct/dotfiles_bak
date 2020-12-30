@@ -1,6 +1,6 @@
 # dotfiles
 
-## Tdods
+## Todos
 
 - [ ] use telescope instead of fzf vim
 - [ ] try out treesitter
