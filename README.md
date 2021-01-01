@@ -7,6 +7,7 @@
 - [ ] what is treesitter textobjects?
 - [ ] use neovim lsp instead if coc
 - [ ] use nvim lua completion
+- [ ] vim wiki research
 
 ## zsh
 
