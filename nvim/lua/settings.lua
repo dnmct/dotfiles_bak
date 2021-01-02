@@ -6,6 +6,7 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.ignorecase = true
 vim.o.hlsearch = true
+vim.o.incsearch = true
 vim.o.background = 'dark'
 vim.o.termguicolors = true
 vim.o.updatetime = 100
