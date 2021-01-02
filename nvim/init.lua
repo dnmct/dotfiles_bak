@@ -5,4 +5,4 @@ require 'keybinds'
 require 'commands'
 
 require 'plugins/_coc'
-require 'plugins/_fzf'
+require 'plugins/_telescope'
