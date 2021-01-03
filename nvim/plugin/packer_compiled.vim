@@ -14,12 +14,6 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/Users/dnmct/.local/share/nvim/site/pack/packer/opt/packer.nvim"
-  },
-  ["vim-gitgutter"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/Users/dnmct/.local/share/nvim/site/pack/packer/opt/vim-gitgutter"
   }
 }
 
@@ -116,7 +110,7 @@ _packer_load = function(names, cause)
     end
 
     if cause.prefix then
-      local prefix = vim.v.count and vim.v.count or ''
+      local prefix = vim.v.count ~= 0 and vim.v.count or ''
       prefix = prefix .. '"' .. vim.v.register .. cause.prefix
       if vim.fn.mode('full') == 'no' then
         if vim.v.operator == 'c' then

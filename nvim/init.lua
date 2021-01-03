@@ -6,3 +6,4 @@ require 'commands'
 
 require 'plugins/_coc'
 require 'plugins/_telescope'
+require 'plugins/_statusline'
