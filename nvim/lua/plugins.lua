@@ -20,13 +20,17 @@ return packer.startup(function()
   }
 
   -- Theme
-  use 'arcticicestudio/nord-vim'
+  -- use 'arcticicestudio/nord-vim'
+  use 'christianchiarulli/nvcode-color-schemes.vim'
 
   -- Statusline
   use {
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
+
+  -- Tree-Sitter
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
   use 'mhinz/vim-signify'
   use 'jiangmiao/auto-pairs'
