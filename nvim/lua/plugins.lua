@@ -12,11 +12,20 @@ return packer.startup(function()
   use 'tpope/vim-commentary'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-surround'
-  
+
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+  }
+
+  -- Theme
+  use 'arcticicestudio/nord-vim'
+
+  -- Statusline
+  use {
+    'hoob3rt/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
 
   use 'mhinz/vim-signify'
@@ -24,5 +33,4 @@ return packer.startup(function()
   use {'neoclide/coc.nvim', branch = 'release'}
 --  use 'junegunn/fzf'
 --  use 'junegunn/fzf.vim'
-  use 'lifepillar/vim-gruvbox8'
 end)

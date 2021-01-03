@@ -14,7 +14,7 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.showmode = false
 vim.o.clipboard = 'unnamedplus'
 
-vim.wo.relativenumber = true
+-- vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.signcolumn = 'yes'
 
@@ -31,7 +31,7 @@ vim.bo.expandtab = true
 
 vim.g.netrw_dirhistmax = 0
 
-vim.cmd('colo gruvbox8')
+vim.cmd('colo nord')
 
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
@@ -39,4 +39,5 @@ vim.g.netrw_banner = 0
 -- Map <leader> to space
 U.map("n", "<SPACE>", "<Nop>")
 vim.g.mapleader = " "
+
 
