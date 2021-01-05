@@ -20,8 +20,8 @@ return packer.startup(function()
   }
 
   -- Theme
-  -- use 'arcticicestudio/nord-vim'
-  use 'christianchiarulli/nvcode-color-schemes.vim'
+  use 'arcticicestudio/nord-vim'
+  --use 'christianchiarulli/nvcode-color-schemes.vim'
 
   -- Statusline
   use {
@@ -31,6 +31,9 @@ return packer.startup(function()
 
   -- Tree-Sitter
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
+  -- File Manager
+  -- use 'kyazdani42/nvim-tree.lua'
 
   use 'mhinz/vim-signify'
   use 'jiangmiao/auto-pairs'

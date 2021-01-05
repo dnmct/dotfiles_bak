@@ -34,7 +34,7 @@ vim.g.netrw_dirhistmax = 0
 vim.cmd('colo nord')
 
 vim.g.netrw_liststyle = 3
-vim.g.netrw_banner = 0
+-- vim.g.netrw_banner = 0
 
 -- Map <leader> to space
 U.map("n", "<SPACE>", "<Nop>")
