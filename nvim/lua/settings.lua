@@ -1,5 +1,4 @@
-local vim = vim
-local U = require 'utils'
+local u = require 'utils'
 
 vim.o.ruler = false
 vim.o.splitright = true
@@ -13,6 +12,8 @@ vim.o.updatetime = 100
 vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.showmode = false
 vim.o.clipboard = 'unnamedplus'
+vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.termguicolors = true
 
 -- vim.wo.relativenumber = true
 vim.wo.cursorline = true
@@ -28,6 +29,7 @@ vim.o.autoindent = true
 vim.bo.autoindent = true
 vim.o.expandtab = true
 vim.bo.expandtab = true
+vim.wo.foldmethod = 'marker'
 
 vim.g.netrw_dirhistmax = 0
 
@@ -36,8 +38,6 @@ vim.cmd('colo nord')
 vim.g.netrw_liststyle = 3
 -- vim.g.netrw_banner = 0
 
--- Map <leader> to space
-U.map("n", "<SPACE>", "<Nop>")
+-- map <leader> to space
+u.map("n", "<space>", "<nop>")
 vim.g.mapleader = " "
-
-

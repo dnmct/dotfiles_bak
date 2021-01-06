@@ -7,6 +7,10 @@ return packer.startup(function()
 
   -- Packer
   use {'wbthomason/packer.nvim', opt = true}
+  
+  -- LSP
+  use { 'neovim/nvim-lspconfig' }
+  use { 'nvim-lua/completion-nvim' }
 
   -- Tpope Plugins
   use 'tpope/vim-commentary'
@@ -21,7 +25,6 @@ return packer.startup(function()
 
   -- Theme
   use 'arcticicestudio/nord-vim'
-  --use 'christianchiarulli/nvcode-color-schemes.vim'
 
   -- Statusline
   use {
@@ -37,7 +40,6 @@ return packer.startup(function()
 
   use 'mhinz/vim-signify'
   use 'jiangmiao/auto-pairs'
-  use {'neoclide/coc.nvim', branch = 'release'}
 --  use 'junegunn/fzf'
 --  use 'junegunn/fzf.vim'
 end)
