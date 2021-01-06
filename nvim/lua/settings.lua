@@ -18,6 +18,7 @@ vim.o.termguicolors = true
 -- vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.signcolumn = 'yes'
+vim.wo.foldmethod = 'marker'
 
 vim.o.tabstop = 2
 vim.bo.tabstop = 2
@@ -29,7 +30,6 @@ vim.o.autoindent = true
 vim.bo.autoindent = true
 vim.o.expandtab = true
 vim.bo.expandtab = true
-vim.wo.foldmethod = 'marker'
 
 vim.g.netrw_dirhistmax = 0
 
