@@ -89,12 +89,8 @@ lsp.sumneko_lua.setup {
   },
 }
 
-function pumvisible()
-  return vim.fn.pumvisible ~=0
-end
-
-vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
-vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
+vim.api.nvim_set_keymap('i', '<Tab>', [[pumvisible() ? "<C-n>" : "<Tab>"]], {expr = true})
+vim.api.nvim_set_keymap('i', '<S-Tab>', [[pumvisible() ? "<C-p>" : "<Tab>"]], {expr = true})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -103,8 +99,3 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
-
--- vim.cmd('highlight LspDiagnosticsSignError guifg=#BF616A')
--- vim.cmd('highlight LspDiagnosticsSignWarning guifg=#EBCB8B')
--- vim.cmd('highlight LspDiagnosticsVirtualTextError guifg=#BF616A')
--- vim.cmd('highlight LspDiagnosticsVirtualTextWarning guifg=#EBCB8B')
