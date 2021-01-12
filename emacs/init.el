@@ -32,6 +32,14 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(column-number-mode)
+(global-display-line-numbers-mode t)
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		shell-mode-hook
+		eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
 ;; keep emacs folder clean by saving auto save files somewhere else
 (use-package no-littering)
 
