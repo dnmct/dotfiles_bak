@@ -43,10 +43,16 @@
 ;; keep emacs folder clean by saving auto save files somewhere else
 (use-package no-littering)
 
-(use-package counsel)
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-find-file)
+	 :map minibuffer-local-map
+	 ("C-r" . counsel-minibufer-history))
+  :config
+  (setq ivy-initial-inputs-alist nil)) ;; dont start searches with ^
 
 (use-package ivy
-  :ensure t
   :diminish
   :config
   (ivy-mode 1)
@@ -66,7 +72,6 @@
 	 ("C-d" . ivy-reverse-i-search-kill)))
 
 (use-package doom-modeline
-  :ensure t
   :init (doom-modeline-mode 1)
   :custom (doom-modeline-height 15))
 
@@ -77,4 +82,17 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 0.3))
+  (setq which-key-idle-delay 0))
+
+(use-package ivy-rich
+  :init (ivy-rich-mode 1))
+
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-commnad] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
