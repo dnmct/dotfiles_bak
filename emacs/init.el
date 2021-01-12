@@ -10,7 +10,7 @@
 
 (set-face-attribute 'default nil :font "MonoLisa" :height 140)
 
-(load-theme 'wombat)
+(load-theme 'doom-Iosvkem)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -70,6 +70,8 @@
 	 :map ivy-reverse-i-search-map
 	 ("C-k" . ivy-previous-line)
 	 ("C-d" . ivy-reverse-i-search-kill)))
+
+(use-package doom-themes)
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
