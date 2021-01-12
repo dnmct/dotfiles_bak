@@ -5,15 +5,19 @@
 (set-fringe-mode 10)
 (setq ring-bell-function 'ignore)
 
-(set-face-attribute 'default nil :font "MonoLisa" :height 150)
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
 
-(load-theme 'tango-dark)
+(set-face-attribute 'default nil :font "MonoLisa" :height 140)
+
+(load-theme 'wombat)
+
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; initialize package sources
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("melpa-stable" . "https://stable.melpa.org/packages/")
 			 ("org" . "https://orgmode.org/elpa/")
 			 ("elpa" . "https://elpa.gnu.org/packages/")))
 
@@ -27,3 +31,32 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package counsel)
+
+(use-package ivy
+  :ensure t
+  :diminish
+  :config
+  (ivy-mode 1)
+  (setq ivy-count-format "(%d|%d) ")
+  :bind (("C-s" . swiper)
+	 :map ivy-minibuffer-map
+	 ("TAB" . ivy-alt-done)
+	 ("C-l" . ivy-alt-done)
+	 ("C-j" . ivy-next-line)
+	 ("C-k" . ivy-previous-line)
+	 :map ivy-switch-buffer-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-l" . ivy-done)
+	 ("C-d" . ivy-switch-buffer-kill)
+	 :map ivy-reverse-i-search-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-d" . ivy-reverse-i-search-kill)))
+
+;;(setq ivy-count-format "(%d|%d) ")
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom (doom-modeline-height 15))
