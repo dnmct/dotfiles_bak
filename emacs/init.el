@@ -54,8 +54,6 @@
 	 ("C-k" . ivy-previous-line)
 	 ("C-d" . ivy-reverse-i-search-kill)))
 
-;;(setq ivy-count-format "(%d|%d) ")
-
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
