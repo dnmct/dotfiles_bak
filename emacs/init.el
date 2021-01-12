@@ -32,6 +32,9 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; keep emacs folder clean by saving auto save files somewhere else
+(use-package no-littering)
+
 (use-package counsel)
 
 (use-package ivy
