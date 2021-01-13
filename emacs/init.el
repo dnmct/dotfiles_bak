@@ -71,6 +71,8 @@
 	 ("C-k" . ivy-previous-line)
 	 ("C-d" . ivy-reverse-i-search-kill)))
 
+(use-package all-the-icons)
+
 (use-package doom-themes)
 
 (use-package doom-modeline
