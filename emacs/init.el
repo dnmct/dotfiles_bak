@@ -10,7 +10,7 @@
 
 (set-face-attribute 'default nil :font "MonoLisa" :height 140)
 
-(load-theme 'doom-Iosvkem)
+(load-theme 'doom-Iosvkem t)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
