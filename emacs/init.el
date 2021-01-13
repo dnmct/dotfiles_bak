@@ -10,8 +10,6 @@
 
 (set-face-attribute 'default nil :font "MonoLisa" :height 140)
 
-(load-theme 'doom-Iosvkem t)
-
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; initialize package sources
@@ -73,7 +71,8 @@
 
 (use-package all-the-icons)
 
-(use-package doom-themes)
+(use-package doom-themes
+  :init (load-theme 'doom-Iosvkem t))
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
