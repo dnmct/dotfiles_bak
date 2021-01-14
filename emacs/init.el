@@ -99,3 +99,21 @@
   ([remap describe-commnad] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+
+(use-package general
+  :config
+  (general-create-definer dnmct/leader-keys
+  ;;:keymaps '(normal insert visual emacs)
+  ;;:prefix "SPC"
+  :prefix "C-SPC")
+  
+  (dnmct/leader-keys
+    "t" '(:ignore t :which-key "toggles")
+    "tt" '(counsel-load-theme :which-key "choose theme")))
+
+
+
+
+
+(general-define-key
+ "C-M-j" 'counsel-switch-buffer)
