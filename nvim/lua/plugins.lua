@@ -25,6 +25,7 @@ return packer.startup(function()
 
   -- Theme
   use 'arcticicestudio/nord-vim'
+  use {'dracula/vim', as = 'dracula'}
 
   -- Statusline
   use {

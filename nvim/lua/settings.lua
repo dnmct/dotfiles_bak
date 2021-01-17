@@ -33,7 +33,7 @@ vim.bo.expandtab = true
 
 vim.g.netrw_dirhistmax = 0
 
-vim.cmd('colo nord')
+vim.cmd('colo dracula')
 
 vim.g.netrw_liststyle = 3
 -- vim.g.netrw_banner = 0
