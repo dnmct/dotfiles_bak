@@ -9,6 +9,7 @@
 - [x] use nvim lua completion
 - [x] vim wiki research
 - [ ] can i put vscode settings here?
+- [ ] find a theme font combination that i really like
 
 ## zsh
 
