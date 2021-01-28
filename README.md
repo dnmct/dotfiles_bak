@@ -8,8 +8,9 @@
 - [x] use neovim lsp instead if coc
 - [x] use nvim lua completion
 - [x] vim wiki research
-- [ ] can i put vscode settings here?
+- [x] can i put vscode settings here?
 - [ ] find a theme font combination that i really like
+- [ ] resume emacs config
 
 ## zsh
 
