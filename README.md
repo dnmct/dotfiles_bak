@@ -10,7 +10,8 @@
 - [x] vim wiki research
 - [x] can i put vscode settings here?
 - [ ] find a theme font combination that i really like
-- [ ] resume emacs config
+- [x] resume emacs config
+- [ ] research viml vs lua
 
 ## zsh
 
