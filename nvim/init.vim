@@ -475,7 +475,6 @@ call plug#begin('~/.config/nvim/plugged')
     else
         imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
     endif
-    
 
     " For enhanced <CR> experience with coc-pairs checkout :h coc#on_enter()
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
