@@ -1,7 +1,71 @@
+" Name:     Neovim Configuration
+" Author:   Dan McAtee <danielmcatee@me.com>
+" URL:      http://dnmct.dev
+" License:  OSI approved MIT license (see end of this file)
+" Created:  2021 Feb 16
+"
+" ---------------------------------------------------------------------
+" PLUGINS:
+" ---------------------------------------------------------------------
 call plug#begin('~/.config/nvim/plugged')
 
-" General {{{
-  "Abbreviations {{{
+  " colorscheme
+  Plug 'chriskempson/base16-vim'
+  " quickly change case
+  Plug 'tpope/vim-abolish'
+  " easy commenting motions
+  Plug 'tpope/vim-commentary'
+  " mappings which are simply short normal mode aliases for commonly used ex commands
+  Plug 'tpope/vim-unimpaired'
+  " mappings to easily delete, change and add surroundings in pairs, such as quotes, parens, etc
+  Plug 'tpope/vim-surround'
+  " tmux integration for vim
+  Plug 'benmills/vimux'
+  " enables repeating other supported plugins with .
+  Plug 'tpope/vim-repeat'
+  " single/multi line code handler: gS - split one line into multiple, gJ - combine multiple lines into one
+  Plug 'AndrewRadev/splitjoin.vim'
+  " https://github.com/norcalli/nvim-colorizer.lua/blob/master/README.md
+  Plug 'norcalli/nvim-colorizer.lua'
+  " detect indent style (tabs vs. spaces)
+  Plug 'tpope/vim-sleuth'
+  " auto pairs https://github.com/jiangmiao/auto-pairs
+  Plug 'jiangmiao/auto-pairs'
+  " context-aware pasting
+  Plug 'sickill/vim-pasta'
+  " quickly maximize current window and restore splits afterwards
+  Plug 'szw/vim-maximizer'
+  " lightline
+  Plug 'itchyny/lightline.vim'
+  Plug 'mike-hearn/base16-vim-lightline'
+  " nerdtree
+  Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  " fzf
+  Plug '/usr/local/opt/fzf'
+  Plug 'junegunn/fzf.vim'
+  " git stuff
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb' " hub extension for fugitive
+  Plug 'sodapopcan/vim-twiggy'
+  Plug 'itchyny/vim-gitbranch'
+
+  Plug 'SirVer/ultisnips' " Snippets plugin
+
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+call plug#end()
+" ---------------------------------------------------------------------
+" GENERAL:
+" ---------------------------------------------------------------------
+  syntax on
+  filetype plugin indent on
+
+  " ---------------------------------------------------------------------
+  " ABBREVIATIONS:
+  " ---------------------------------------------------------------------
     abbr funciton function
     abbr teh the
     abbr tempalte template
@@ -9,12 +73,17 @@ call plug#begin('~/.config/nvim/plugged')
     abbr cosnt const
     abbr attribtue attribute
     abbr attribuet attribute
-  "}}}
+
+  set completeopt=menu,menuone,noselect " better completion behaviour
+  set mouse=a " enable mouse support
+  set splitright
+  set splitbelow
 
   set autoread " detect when a file is changed
 
   set history=1000
   set textwidth=120
+
 
   set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
   set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -25,31 +94,34 @@ call plug#begin('~/.config/nvim/plugged')
   " show results of substition as they're happening
   " but don't open a split
   set inccommand=nosplit
-  " Disable ruby provider
-  let g:loaded_ruby_provider = 0
-  " Disable python2 provider
-  let g:loaded_python_provider = 0
 
-  set backspace=indent,eol,start
-  set clipboard=unnamed
-  set mouse=a
+  let g:loaded_ruby_provider = 0 " Disable ruby provider
+  let g:loaded_python_provider = 0 " Disable python2 provider
 
-  " Searching
-  set ignorecase " case insensitive searching
-  set smartcase " case-sensitive if expresson contains a capital letter
-  set hlsearch " highlight search results
-  set incsearch " set incremental search, like modern browsers
-  set nolazyredraw " don't redraw while executing macros
-  set magic " Set magic on, for regex
 
-  " error bells
-  set noerrorbells
-  set visualbell
-  set t_vb=
-  set tm=500
-" }}}
+  set clipboard=unnamed " use system clipboard
 
-" Appearance {{{
+  " ---------------------------------------------------------------------
+  " SEARCHING:
+  " ---------------------------------------------------------------------
+    set ignorecase " case insensitive searching
+    set smartcase " case-sensitive if expresson contains a capital letter
+    set hlsearch " highlight search results
+    set incsearch " set incremental search, like modern browsers
+    set nolazyredraw " don't redraw while executing macros
+    set magic " Set magic on, for regex
+
+  " ---------------------------------------------------------------------
+  " ERROR BELLS:
+  " ---------------------------------------------------------------------
+    set noerrorbells
+    set visualbell
+    set t_vb=
+    set tm=500
+
+" ---------------------------------------------------------------------
+" APPEARANCE:
+" ---------------------------------------------------------------------
   set number " show line numbers
   set wrap " turn on line wrapping
   set wrapmargin=8 " wrap lines when coming within n characters from side
@@ -63,123 +135,94 @@ call plug#begin('~/.config/nvim/plugged')
   set hidden " current buffer can be put into background
   set showcmd " show incomplete commands
   set noshowmode " don't show which mode disabled for PowerLine
-  set wildmode=list:longest " complete files like a shell
-  set shell=$SHELL
   set cmdheight=1 " command bar height
   set title " set terminal title
   set showmatch " show matching braces
   set mat=2 " how many tenths of a second to blink
   set updatetime=300
-  set signcolumn=yes
-  set shortmess+=c
+  set signcolumn=yes " always show signcolum
+  set shortmess+=c " don't need to hit enter too often
 
-  " Tab control
-  set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-  set tabstop=2 " the visible width of tabs
-  set softtabstop=2 " edit as if the tabs are 4 characters wide
-  set shiftwidth=2 " number of spaces to use for indent and unindent
-  set shiftround " round indent to a multiple of 'shiftwidth'
-  set expandtab
+  " ---------------------------------------------------------------------
+  " TAB CONTROL:
+  " ---------------------------------------------------------------------
+    set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+    set tabstop=2 " the visible width of tabs
+    set softtabstop=2 " edit as if the tabs are 4 characters wide
+    set shiftwidth=2 " number of spaces to use for indent and unindent
+    set shiftround " round indent to a multiple of 'shiftwidth'
+    set expandtab
 
-  " code folding settings
-  set foldmethod=syntax " fold based on marker {{{}}}
-  set foldlevelstart=99 " all folds closed at start
-  set foldnestmax=10 " deepest fold is 10 levels
-  set foldlevel=1
-  set nofoldenable
+  " ---------------------------------------------------------------------
+  " CODE FOLDING:
+  " ---------------------------------------------------------------------
+    set foldmethod=syntax " fold based on marker {{{}}}
+    set foldlevelstart=99 " all folds closed at start
+    set foldnestmax=10 " deepest fold is 10 levels
+    set foldlevel=1
+    set nofoldenable
 
-  " toggle invisible characters
-  set list
-  set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-  set showbreak=↪
+  " ---------------------------------------------------------------------
+  "  COLORS:
+  " ---------------------------------------------------------------------
+    set background=dark
+    colorscheme base16-seti
 
-  set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
-  " switch cursor to line when in insert mode, and block when not
-  set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-  \,sm:block-blinkwait175-blinkoff150-blinkon175
+    set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
+    " switch cursor to line when in insert mode, and block when not
+    set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+    \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+    \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-  if &term =~ '256color'
-      " disable background color erase
-      set t_ut=
-  endif
+    if &term =~ '256color'
+        " disable background color erase
+        set t_ut=
+    endif
 
-  " enable 24 bit color support if supported
-  if (has("termguicolors"))
-      if (!(has("nvim")))
-          let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-          let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-      endif
-      set termguicolors
-  endif
+    " enable 24 bit color support if supported
+    if (has("termguicolors"))
+        if (!(has("nvim")))
+            let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+            let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+        endif
+        set termguicolors
+    endif
 
-  " highlight conflicts
-  match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+    " highlight conflicts
+    match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-  " Load colorschemes
-  Plug 'chriskempson/base16-vim'
+    " make the highlighting of tabs and other non-text less annoying
+   highlight SpecialKey ctermfg=19 guifg=#333333
+   highlight NonText ctermfg=19 guifg=#333333
+   highlight Normal ctermbg=none
 
-  " LightLine {{{
-      Plug 'itchyny/lightline.vim'
-      Plug 'mike-hearn/base16-vim-lightline'
-      let g:lightline = {
-          \   'colorscheme': 'base16_seti',
-          \   'active': {
-          \       'left': [ [ 'mode', 'paste' ],
-          \               [ 'gitbranch' ],
-          \               [ 'readonly', 'filetype', 'filename' ]],
-          \       'right': [ [ 'percent' ], [ 'lineinfo' ],
-          \               [ 'fileformat', 'fileencoding' ],
-          \               [ 'gitblame', 'currentfunction',  'cocstatus', 'linter_errors', 'linter_warnings' ]]
-          \   },
-          \   'component_expand': {
-          \   },
-          \   'component_type': {
-          \       'readonly': 'error',
-          \       'linter_warnings': 'warning',
-          \       'linter_errors': 'error'
-          \   },
-          \   'component_function': {
-          \       'fileencoding': 'helpers#lightline#fileEncoding',
-          \       'filename': 'helpers#lightline#fileName',
-          \       'fileformat': 'helpers#lightline#fileFormat',
-          \       'filetype': 'helpers#lightline#fileType',
-          \       'gitbranch': 'helpers#lightline#gitBranch',
-          \       'cocstatus': 'coc#status',
-          \       'currentfunction': 'helpers#lightline#currentFunction',
-          \       'gitblame': 'helpers#lightline#gitBlame'
-          \   },
-          \   'tabline': {
-          \       'left': [ [ 'tabs' ] ],
-          \       'right': [ [ 'close' ] ]
-          \   },
-          \   'tab': {
-          \       'active': [ 'filename', 'modified' ],
-          \       'inactive': [ 'filename', 'modified' ],
-          \   },
-          \   'separator': { 'left': '', 'right': '' },
-          \   'subseparator': { 'left': '', 'right': '' }
-      \ }
-  " }}}
-" }}}
+  " ---------------------------------------------------------------------
+  "  INVISIBLE CHARACTERS:
+  " ---------------------------------------------------------------------
+    set list
+    set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+    set showbreak=↪
 
-" General Mappings {{{
-  let mapleader = ','
+" ---------------------------------------------------------------------
+"  MAPPINGS:
+" ---------------------------------------------------------------------
+  let mapleader = ' '
 
   "shortcut to save
   nmap <leader>, :w<cr>
-
+  " toggle maximizer
+  nnoremap <silent> <leader>m :MaximizerToggle!<CR>
   " edit ~/.config/nvim/init.vim
   map <leader>ev :e! ~/.config/nvim/init.vim<cr>
   " edit gitconfig
   map <leader>eg :e! ~/.gitconfig<cr>
 
   " clear highlighted search
-  noremap <space> :nohl<cr>
+  noremap <leader>c :nohl<cr>
 
   " remove extra whitespace
-  nmap <leader><space> :%s/\s\+$<cr>
-  nmap <leader><space><space> :%s/\n\{2,}/\r\r/g<cr>
+  nmap <leader>x :%s/\s\+$<cr>
+  " nmap <leader><space><space> :%s/\n\{2,}/\r\r/g<cr>
 
   inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
   inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
@@ -221,9 +264,10 @@ call plug#begin('~/.config/nvim/plugged')
   " around line
   vnoremap <silent> al :<c-u>normal! $v0<cr>
   onoremap <silent> al :<c-u>normal! $v0<cr>
-" }}}
 
-" AutoGroups {{{
+" ---------------------------------------------------------------------
+"  AUTOGROUPS:
+" ---------------------------------------------------------------------
   " file type specific settings
   augroup configgroup
       autocmd!
@@ -240,47 +284,28 @@ call plug#begin('~/.config/nvim/plugged')
       " coc  correct comment highlighting
       autocmd FileType json syntax match Comment +\/\/.\+$+
   augroup END
-" }}}
 
-" General Functionality {{{
-  " quickly change case
-  Plug 'tpope/vim-abolish'
+" ---------------------------------------------------------------------
+"  PLUGIN CONFIGURATION:
+" ---------------------------------------------------------------------
 
-  " easy commenting motions
-  Plug 'tpope/vim-commentary'
+  " ---------------------------------------------------------------------
+  "  LIGHTLINE:
+  " ---------------------------------------------------------------------
+    let g:lightline = {
+        \   'colorscheme': 'base16_seti',
+        \   'active': {
+        \       'left': [ [ 'mode', 'paste' ],
+        \               [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+        \   },
+        \   'component_function': {
+        \       'gitbranch': 'gitbranch#name',
+        \   }
+        \ }
 
-  " mappings which are simply short normal mode aliases for commonly used ex commands
-  Plug 'tpope/vim-unimpaired'
-
-  " mappings to easily delete, change and add surroundings in pairs, such as quotes, parens, etc
-  Plug 'tpope/vim-surround'
-
-  " tmux integration for vim
-  Plug 'benmills/vimux'
-
-  " enables repeating other supported plugins with .
-  Plug 'tpope/vim-repeat'
-
-  " single/multi line code handler: gS - split one line into multiple, gJ - combine multiple lines into one
-  Plug 'AndrewRadev/splitjoin.vim'
-
-  " https://github.com/norcalli/nvim-colorizer.lua/blob/master/README.md
-  Plug 'norcalli/nvim-colorizer.lua'
-
-  " detect indent style (tabs vs. spaces)
-  Plug 'tpope/vim-sleuth'
-
-  " auto pairs https://github.com/jiangmiao/auto-pairs
-  Plug 'jiangmiao/auto-pairs'
-
-  " context-aware pasting
-  Plug 'sickill/vim-pasta'
-
-  " NERDTree {{{
-    Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  " ---------------------------------------------------------------------
+  "  NERDTREE:
+  " ---------------------------------------------------------------------
     let g:WebDevIconsOS = 'Darwin'
     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
     let g:DevIconsEnableFoldersOpenClose = 1
@@ -323,11 +348,10 @@ call plug#begin('~/.config/nvim/plugged')
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
-  " }}}
 
-  " FZF {{{
-    Plug '/usr/local/opt/fzf'
-    Plug 'junegunn/fzf.vim'
+  " ---------------------------------------------------------------------
+  "  FZF:
+  " ---------------------------------------------------------------------
     let g:fzf_layout = { 'down': '~25%' }
 
     if isdirectory(".git")
@@ -377,29 +401,25 @@ call plug#begin('~/.config/nvim/plugged')
         \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:50%', '?'), <bang>0)
     command! -bang -nargs=? -complete=dir GitFiles
         \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview('right:50%', '?'), <bang>0)
-  " }}}
 
-  " vim-fugitive {{{
-    Plug 'tpope/vim-fugitive'
+  " ---------------------------------------------------------------------
+  "  FUGITIVE:
+  " ---------------------------------------------------------------------
     nmap <silent> <leader>gs :Gstatus<cr>
     nmap <leader>ge :Gedit<cr>
     nmap <silent><leader>gr :Gread<cr>
     nmap <silent><leader>gb :Gblame<cr>
 
-    Plug 'tpope/vim-rhubarb' " hub extension for fugitive
-    Plug 'sodapopcan/vim-twiggy'
-  " }}}
-
-  " UltiSnips {{{
-    Plug 'SirVer/ultisnips' " Snippets plugin
+  " ---------------------------------------------------------------------
+  "  ULTISNIPS:
+  " ---------------------------------------------------------------------
     let g:UltiSnipsExpandTrigger="<C-l>"
     let g:UltiSnipsJumpForwardTrigger="<C-j>"
     let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-  " }}}
 
-  " coc {{{
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+  " ---------------------------------------------------------------------
+  "  COC:
+  " ---------------------------------------------------------------------
     let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-diagnostic',
@@ -479,17 +499,4 @@ call plug#begin('~/.config/nvim/plugged')
     " For enhanced <CR> experience with coc-pairs checkout :h coc#on_enter()
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
           \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-  " }}}
-" }}}
 
-call plug#end()
-
-set background=dark
-colorscheme base16-seti
-syntax on
-filetype plugin indent on
-
- " make the highlighting of tabs and other non-text less annoying
-highlight SpecialKey ctermfg=19 guifg=#333333
-highlight NonText ctermfg=19 guifg=#333333
-highlight Normal ctermbg=none
