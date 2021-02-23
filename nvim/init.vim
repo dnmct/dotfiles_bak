@@ -207,6 +207,7 @@ call plug#end()
 "  MAPPINGS:
 " ---------------------------------------------------------------------
   let mapleader = ' '
+  nnoremap <SPACE> <Nop>
 
   "shortcut to save
   nmap <leader>, :w<cr>
@@ -427,7 +428,6 @@ call plug#end()
     \ 'coc-json',
     \ 'coc-pairs',
     \ 'coc-prettier',
-    \ 'coc-reason',
     \ 'coc-tabnine',
     \ 'coc-tailwindcss',
     \ 'coc-tsserver',
