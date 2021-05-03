@@ -1,6 +1,0 @@
-[submodule "prezto"]
-	path = prezto
-	url = https://github.com/dnmct/prezto
-[submodule "forgit"]
-	path = forgit
-	url = https://github.com/wfxr/forgit
