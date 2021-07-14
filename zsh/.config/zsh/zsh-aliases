@@ -1,0 +1,10 @@
+alias vim=nvim
+alias v=nvim
+alias ls=exa
+alias ll="ls -l"
+alias la="ls -al"
+alias ..="cd .."
+alias ps=procs
+alias cat=bat
+
+alias luamake=/Users/dnmct/.config/nvim/language-servers/lua-language-server/3rd/luamake/luamake
